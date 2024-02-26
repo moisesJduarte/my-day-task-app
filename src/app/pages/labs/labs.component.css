@@ -1,0 +1,21 @@
+.container {
+  padding: 3rem;
+}
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid #3498db;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+/* Cambiar color de fondo al pasar el mouse */
+.button:hover {
+  background-color: #2980b9;
+}
