@@ -11,8 +11,8 @@
     <hr />
     <h2>{{ 'hola'.repeat(4) }}</h2>
     <p>hola soy {{ name() }} y mi eda es {{ age }} </p>
-    <img [src]="person.avatar" alt="">
-    <input type="text" [value]="person.age">
+    <img [src]="person().avatar" alt="">
+    <input type="text" [value]="person().age">
     <button class="button" [disabled]="disabled">click me</button>
 
     <p>person: {{person.name}}</p>
@@ -21,13 +21,13 @@
     <button class="button" (click)="clickHandler()">click Me</button>
     <button class="button" (dblclick)="clickHandler()">double Me</button>
     <p>(change)</p>
-    <input type="text" [value]="person.age" (change)="changeHandler($event)">
+    <input type="number" [value]="person().age" (change)="changeHandler($event)">
 
     <hr />
     <p>()key down</p>
-    <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
+    <input type="text" [value]="person().name" (keydown)="keydownHandler($event)">
 
-    <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
+    <input type="text" [value]="person().name" (keydown.shift.t)="clickHandler()">
 
     <hr>
     <p>total: {{task().length }}</p>
@@ -43,6 +43,52 @@
     <p>name:{{ name() }}</p>
     <p>name:{{ name() }}</p>
 
+    <hr />
+    <div *ngIf="1 !== 1">
+        My contend
+    </div>
+    <input type="number" [value]="person().age" (change)="changeAge($event)">
 
+    <div *ngIf="name() === 'Moises'">
+        soy Moises
+    </div>
+    <div *ngIf="person().name === 'Moises' && person().age >  18; else elseBlock">
+        Soy Moises y soy mayor de 18
+    </div>
+    <ng-template #elseBlock>soy Moises y soy menor de 18</ng-template>
+
+    <hr />
+
+    <input type="text" [value]="person().name" (change)="changeName($event)">
+    <div [ngSwitch]="person().name">
+        <p *ngSwitchCase="'Moises'">yo soy moises</p>
+        <p *ngSwitchCase="'angel'">yo soy angel</p>
+        <p *ngSwitchCase="'pedro'">yo soy pedro</p>
+        <p *ngSwitchDefault>yo no soy nadie</p>
+
+    </div>
+    <hr />
+
+    <input type="color" [formControl]="colorCtrl">
+    <p>color: {{ colorCtrl.value }}</p>
+    <hr />
+
+    <svg>
+        <g>
+            <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value" />
+        </g>
+    </svg>
+    <hr />
+    <input type="number" [formControl]="widthCtrl">
+    <span class="box" [style.width.px]="widthCtrl.value"></span>
+
+    <hr />
+    <p>
+        <input type="text" [formControl]="nameCtrl"> <br />
+        <span class="message-error" [class.show]="nameCtrl.invalid && nameCtrl.touched">Nombre invalido</span>
+    </p>
+    <p>
+        <input type="text">
+    </p>
 
 </div>
